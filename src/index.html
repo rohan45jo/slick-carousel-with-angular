@@ -1,14 +1,35 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>CarouselDemo</title>
-  <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<head>
+    <meta charset="utf-8">
+    <title>CarouselDemo</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
-  <app-root></app-root>
+    <app-root></app-root>
 </body>
+<script type="text/javascript">
+    var item_length = $('.your-class > div').length - 1;
+    var slider = $('.your-class').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 400,
+        infinite: false
+    });
+
+    slider.on('afterChange', function(event, slick, currentSlide, nextSlide) {
+        if (item_length === slider.slick('slickCurrentSlide')) {
+            slider.slick("slickSetOption", "autoplay", false, false);
+        }
+    });
+</script>
+
 </html>
